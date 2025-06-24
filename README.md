@@ -5,9 +5,15 @@
 
 ---
 
+## 📁 Project Overview
+
+This is a simple NLP project using a custom-trained model built with TensorFlow and served via Flask. You can either use the pre-trained model or train a new one using the provided dataset and notebook.
+
+---
+
 ## 📥 Requirements
 
-To run this project, you will need to **download the pre-trained model and its tokenizer** manually.
+To run this project, you need to download the **pre-trained model** and **tokenizer** manually.
 
 ### 🔗 Downloads
 
@@ -15,45 +21,62 @@ To run this project, you will need to **download the pre-trained model and its t
   [📁 Google Drive Folder](https://drive.google.com/drive/folders/1-Wha_doXW39ijTUQHWuXKkshOLLY4y9v?usp=drive_link)
 
 - **Dataset (700,000+ Rows)**  
-  The same folder also contains a large dataset you can use to train or fine-tune the model.
+  The same folder includes a large dataset used for model training and testing.
 
 ---
 
-## 🧠 Train Your Own Model
+## ⚙️ Installation
 
-You’ll find a Jupyter Notebook (`.ipynb`) in the folder that contains everything you need to:
-- Preprocess the dataset  
-- Train a new model  
-- Evaluate performance  
-- Upload the trained model to Google Drive
+1. **Clone the repository**:
+   ```bash
+   git clone <your-repo-link>
+   cd <your-project-folder>
+   
 
----
+2. **Install required packages:**
+   Make sure Python is installed (Python 3.7+ recommended), then run:
 
-## 📂 Folder Contents
+pip install -r requirements.txt 
+requirements.txt includes:
 
-- `model/` – Pre-trained model files (to be downloaded)  
-- `tokenizer/` – Tokenizer files (to be downloaded)  
-- `dataset.csv` – Dataset with 700k+ rows  
-- `train_model.ipynb` – Notebook to train, test, and save your model
+flask
+tensorflow
+gunicorn
+numpy
 
----
+3. **Add model and tokenizer files:**
 
-## 📌 Notes
+  Download the model and tokenizer from the Drive folder above.
 
-- Ensure you have the required Python libraries installed (e.g., `transformers`, `datasets`, `torch`, etc.)
-- You must place the downloaded model and tokenizer in the correct directories as referenced in the notebook.
+  Place all the model and tokenizer files in the same directory as app.py.
 
----
+## 🚀 Running the Project
 
-## ✅ Next Steps
+Once everything is ready:
 
-- [ ] Automate download of model/tokenizer
-- [ ] Add CLI or web interface for inference
-- [ ] Improve training pipeline
+python app.py
 
----
+This will start the Flask server locally, and the model will be ready to serve predictions.
 
-## 📧 Contact
+## 🧠 Training a New Model
 
-For any issues or suggestions, feel free to open an issue or contact the developer.
+If you want to train your own model using the provided dataset:
+1.Download the dataset and training notebook (.ipynb) from the same Drive folder.
+2.Place the dataset and notebook in your project directory.
+3.Open the notebook and follow the instructions to:
+  Load and preprocess the data
+  Train the model
+  Evaluate and save the model/tokenizer
+  Upload the trained model to Google Drive if needed
+
+##  📂 Folder Structure
+
+/project-folder
+│
+├── app.py
+├── requirements.txt
+├── model/           ← Pre-trained model files (optional)
+├── tokenizer/       ← Tokenizer files (optional)
+├── dataset.csv      ← Dataset (optional, for training)
+└── train_model.ipynb← Jupyter notebook for training (optional)
 
