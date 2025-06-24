@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>تحليل المشاعر</title>
+    <style>
+        :root {
+            --main-color: #0077b6;
+            --accent-color: #90e0ef;
+            --bg-color: #f6f9fc;
+            --font-color: #222;
+            --error-color: #e63946;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--font-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 2rem 3rem;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--main-color);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        textarea {
+            resize: none;
+            padding: 1rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        input[type="submit"] {
+            background-color: var(--main-color);
+            color: white;
+            padding: 0.8rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: var(--accent-color);
+            color: #000;
+        }
+
+        .result {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .result h3 {
+            margin: 0.5rem 0;
+            color: var(--main-color);
+        }
+
+        .result p {
+            font-weight: bold;
+        }
+
+        .error {
+            color: var(--error-color);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>تحليل المشاعر</h1>
+        <form method="post" onsubmit="return validateForm();">
+            <textarea name="text" id="textInput" rows="5" placeholder="أدخل نص هنا..."></textarea>
+            <input type="submit" value="تحليل">
+            <p class="error" id="errorMsg" style="display: none;">يرجى إدخال نص قبل التحليل.</p>
+        </form>
+
+        {% if prediction %}
+        <div class="result">
+            <h3>النتيجة: {{ prediction }}</h3>
+            <p>نسبة الثقة: {{ confidence }}</p>
+        </div>
+        {% endif %}
+        
+    </div>
+
+    <script>
+        function validateForm() {
+            const input = document.getElementById('textInput').value.trim();
+            const errorMsg = document.getElementById('errorMsg');
+            if (input === '') {
+                errorMsg.style.display = 'block';
+                return false;
+            }
+            errorMsg.style.display = 'none';
+            return true;
+        }
+    </script>
+</body>
+</html>
